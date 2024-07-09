@@ -1120,15 +1120,19 @@
 
               ],
               "type": {
-                "kind": "LIST",
+                "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "NON_NULL",
+                  "kind": "LIST",
                   "name": null,
                   "ofType": {
-                    "kind": "OBJECT",
-                    "name": "CurrencyAmount",
-                    "ofType": null
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "CurrencyAmount",
+                      "ofType": null
+                    }
                   }
                 }
               },
@@ -2964,9 +2968,13 @@
                 }
               ],
               "type": {
-                "kind": "OBJECT",
-                "name": "LedgerAccountsConnection",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "LedgerAccountsConnection",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -3915,9 +3923,13 @@
                 }
               ],
               "type": {
-                "kind": "OBJECT",
-                "name": "LedgerAccountsConnection",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "LedgerAccountsConnection",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -3978,9 +3990,13 @@
                 }
               ],
               "type": {
-                "kind": "OBJECT",
-                "name": "LedgerEntriesConnection",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "LedgerEntriesConnection",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -4072,9 +4088,13 @@
                 }
               ],
               "type": {
-                "kind": "OBJECT",
-                "name": "LedgerEntryGroupsConnection",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "LedgerEntryGroupsConnection",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -4086,9 +4106,13 @@
 
               ],
               "type": {
-                "kind": "OBJECT",
-                "name": "LedgerMigrationConnection",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "LedgerMigrationConnection",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -5036,9 +5060,13 @@
                 }
               ],
               "type": {
-                "kind": "OBJECT",
-                "name": "TxsConnection",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "TxsConnection",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -5177,8 +5205,26 @@
           "fields": null,
           "inputFields": [
             {
+              "name": "groups",
+              "description": "The consistency configuration for Ledger Entry Groups affecting this account.\n\nSee [Configure consistency](https://fragment.dev/docs#configure-consistency).",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "LedgerAccountGroupConsistencyConfigInput",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            },
+            {
               "name": "lines",
-              "description": "If set to `strong`, then a Ledger Account's `lines` updates will be strongly consistent with\nthe API response. This Ledger Account's balance will be updated and\navailable for strongly consistent reads before you receive an API response.\n\nOtherwise if unset or set to `eventual`, `lines` updates are applied\nasynchronously and may not be immediately reflected queries.\n\nSee [Configure consistency](https://fragment.dev/docs#configure-consistency).",
+              "description": "If set to `strong`, then a Ledger Account's `lines` updates will be strongly consistent with the API response.\nThis Ledger Account's balance will be updated and available for strongly consistent reads before you receive an API response.\n\nOtherwise if unset or set to `eventual`, `lines` updates are applied asynchronously and may not be immediately reflected in queries.\n\nSee [Configure consistency](https://fragment.dev/docs#configure-consistency).",
               "type": {
                 "kind": "ENUM",
                 "name": "LedgerLinesConsistencyMode",
@@ -5188,7 +5234,7 @@
             },
             {
               "name": "ownBalanceUpdates",
-              "description": "If set to `strong`, then a Ledger Account's `ownBalance` updates will be strongly consistent with\nthe API response. This Ledger Account's balance will be updated and\navailable for strongly consistent reads before you receive an API response.\n\nOtherwise if unset or set to `eventual`, `ownBalance` updates are applied\nasynchronously and may not be immediately reflected queries.\n\nSee [Configure consistency](https://fragment.dev/docs#configure-consistency).",
+              "description": "If set to `strong`, then a Ledger Account's `ownBalance` updates will be strongly consistent with the API response.\nThis Ledger Account's balance will be updated and available for strongly consistent reads before you receive an API response.\n\nOtherwise if unset or set to `eventual`, `ownBalance` updates are applied asynchronously and may not be immediately reflected in queries.\n\nSee [Configure consistency](https://fragment.dev/docs#configure-consistency).",
               "type": {
                 "kind": "ENUM",
                 "name": "BalanceUpdateConsistencyMode",
@@ -5231,6 +5277,45 @@
                     "name": "LedgerAccountMatchInput",
                     "ofType": null
                   }
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "LedgerAccountGroupConsistencyConfigInput",
+          "description": "The consistency configuration for a specific Ledger Entry Group in this account.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "key",
+              "description": "The group key for this configuration.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "ownBalanceUpdates",
+              "description": "If set to `strong`, then Ledger Entry Group `ownBalance`s updates for this account will be strongly consistent with the API response.\nThis Ledger Account's Ledger Entry Group balances will be updated and available for strongly consistent reads before you receive an API response.\n\nOtherwise if unset or set to `eventual`, Ledger Entry Group `ownBalance` updates are applied asynchronously and may not be immediately reflected in queries.\n\nSee [Configure consistency](https://fragment.dev/docs#configure-consistency).",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "BalanceUpdateConsistencyMode",
+                  "ofType": null
                 }
               },
               "defaultValue": null
@@ -5367,15 +5452,19 @@
 
               ],
               "type": {
-                "kind": "LIST",
+                "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "NON_NULL",
+                  "kind": "LIST",
                   "name": null,
                   "ofType": {
-                    "kind": "OBJECT",
-                    "name": "LedgerAccount",
-                    "ofType": null
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "LedgerAccount",
+                      "ofType": null
+                    }
                   }
                 }
               },
@@ -5501,15 +5590,19 @@
 
               ],
               "type": {
-                "kind": "LIST",
+                "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "NON_NULL",
+                  "kind": "LIST",
                   "name": null,
                   "ofType": {
-                    "kind": "OBJECT",
-                    "name": "LedgerEntry",
-                    "ofType": null
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "LedgerEntry",
+                      "ofType": null
+                    }
                   }
                 }
               },
@@ -6315,7 +6408,16 @@
               "name": "ownBalance",
               "description": "The total balance change for this Ledger Account and currency.",
               "args": [
-
+                {
+                  "name": "consistencyMode",
+                  "description": "The consistency mode to use when fetching the balance. Use 'use_account' to match the configured consistency mode of the account.",
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "ReadBalanceConsistencyMode",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
               ],
               "type": {
                 "kind": "NON_NULL",
@@ -7393,15 +7495,19 @@
 
               ],
               "type": {
-                "kind": "LIST",
+                "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "NON_NULL",
+                  "kind": "LIST",
                   "name": null,
                   "ofType": {
-                    "kind": "OBJECT",
-                    "name": "LedgerLine",
-                    "ofType": null
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "LedgerLine",
+                      "ofType": null
+                    }
                   }
                 }
               },
@@ -7772,15 +7878,19 @@
 
               ],
               "type": {
-                "kind": "LIST",
+                "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "NON_NULL",
+                  "kind": "LIST",
                   "name": null,
                   "ofType": {
-                    "kind": "OBJECT",
-                    "name": "Ledger",
-                    "ofType": null
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "Ledger",
+                      "ofType": null
+                    }
                   }
                 }
               },
@@ -9130,9 +9240,13 @@
                 }
               ],
               "type": {
-                "kind": "OBJECT",
-                "name": "LedgersConnection",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "LedgersConnection",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -9255,9 +9369,13 @@
                 }
               ],
               "type": {
-                "kind": "OBJECT",
-                "name": "SchemaConnection",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SchemaConnection",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -9662,9 +9780,13 @@
                 }
               ],
               "type": {
-                "kind": "OBJECT",
-                "name": "LedgersConnection",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "LedgersConnection",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -10719,9 +10841,13 @@
 
               ],
               "type": {
-                "kind": "OBJECT",
-                "name": "LedgerMigrationConnection",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "LedgerMigrationConnection",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -11490,9 +11616,13 @@
 
               ],
               "type": {
-                "kind": "OBJECT",
-                "name": "LedgerEntriesConnection",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "LedgerEntriesConnection",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -11548,9 +11678,13 @@
 
               ],
               "type": {
-                "kind": "OBJECT",
-                "name": "LedgerLinesConnection",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "LedgerLinesConnection",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -11770,15 +11904,19 @@
 
               ],
               "type": {
-                "kind": "LIST",
+                "kind": "NON_NULL",
                 "name": null,
                 "ofType": {
-                  "kind": "NON_NULL",
+                  "kind": "LIST",
                   "name": null,
                   "ofType": {
-                    "kind": "OBJECT",
-                    "name": "Tx",
-                    "ofType": null
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "Tx",
+                      "ofType": null
+                    }
                   }
                 }
               },
